@@ -1,42 +1,43 @@
 [user]
-    email = alexandre.bossard@tanker.io
-    name = Alexandre Bossard
+  email = alexandre.bossard@tanker.io
+  name = Alexandre Bossard
 [color]
-    branch = auto
-		diff = auto
-    grep = auto
-    interactive = auto
-    pager = true
-    status = auto
-    showbranch = auto
-    ui = auto
+  branch = auto
+  diff = auto
+  grep = auto
+  interactive = auto
+  pager = true
+  status = auto
+  showbranch = auto
+  ui = auto
 [alias]
-    st = status
-    co = checkout
-    cm = commit
-    rb = rebase
-    dif = diff
-    lo = log
-    sdif = diff --staged
-    sdiff = diff --staged
-    lp = log -p
-    ls = log --oneline
-    lss = log --oneline --stat
-    lsr = log --oneline --reverse
-    lg = log --graph --abbrev-commit --decorate --all
+  st = status
+  co = checkout
+  cm = commit
+  rb = rebase
+  dif = diff
+  lo = log
+  sdif = diff --staged
+  sdiff = diff --staged
+  lp = log -p
+  ls = log --oneline
+  lss = log --oneline --stat
+  lsr = log --oneline --reverse
+  lg = log --graph --abbrev-commit --decorate --all
 [push]
-	default = simple
+  default = simple
 [core]
-    editor = vim
-    excludesfile = /home/alexandre/.gitignore
-		autocrlf = input
+  editor = vim
+  excludesfile = /home/alexandre/.gitignore
+  autocrlf = input
+  pager = less -F -X
 [color "diff"]
-    whitespace = red reverse
+  whitespace = red reverse
 [pull]
-	rebase = true
+  rebase = true
 [rerere]
-	enabled = true
+  enabled = true
 [grep]
-	lineNumber = 1
+  lineNumber = 1
 [rebase]
-	autosquash = 1
+  autosquash = 1
