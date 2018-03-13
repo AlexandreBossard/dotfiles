@@ -69,7 +69,6 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'pangloss/vim-javascript'
 Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'scrooloose/syntastic'
 
 Plugin 'peterhoeg/vim-qml'
 " All of your Plugins must be added before the following line
@@ -81,15 +80,6 @@ let g:ycm_error_symbol = '!>'
 let g:ycm_warning_symbol = '~>'
 let g:ycm_python_binary_path = 'python3'
 
-let g:syntastic_javascript_eslint_exe = 'yarn run eslint --'
-let g:syntastic_javascript_checkers = ['eslint', 'flow']
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-" let g:syntastic_debug = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_mode_map = {
-  \ "mode": "passive" }
 
 
 "let g:clang_format#auto_format_on_insert_leave = 1
