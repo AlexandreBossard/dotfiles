@@ -28,7 +28,7 @@ autocmd FileType qml,c,cpp,h,hpp,git,js,tex syn match Todo /\s\+$\| \+\ze\t/
 
 set shell=/bin/sh
 
-set wildignore+=*/node_modules/*,*/build(-default)?/*,.git/*,*/vendor/*,*.o,*.so,*.a
+set wildignore+=*/node_modules/*,*/build(-default)?/*,.git/*,*/vendor/*,*/bin/*,*.o,*.so,*.a
 
 
 set cino=g0,b1,N-s,)40
