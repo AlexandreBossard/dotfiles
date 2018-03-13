@@ -81,9 +81,9 @@ let g:ycm_warning_symbol = '~>'
 let g:ycm_python_binary_path = 'python3'
 
 
-
-"let g:clang_format#auto_format_on_insert_leave = 1
 autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+autocmd FileType c,cpp,objc let g:clang_format#auto_format = 1
+
 
 nn <leader>gg :YcmCompleter GoToImprecise<CR>
 nn <leader>gd :YcmCompleter GoToDefinition<CR>
