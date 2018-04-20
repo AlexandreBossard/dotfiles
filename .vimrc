@@ -58,7 +58,6 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'rdnetto/YCM-Generator'
-Plugin 'rhysd/vim-clang-format'
 Plugin 'luochen1990/rainbow'
 Plugin 'SirVer/ultisnips'
 Plugin 'derekwyatt/vim-fswitch'
@@ -82,11 +81,6 @@ let g:ycm_error_symbol = '!>'
 let g:ycm_warning_symbol = '~>'
 let g:ycm_python_binary_path = 'python3'
 
-
-autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
-autocmd FileType c,cpp,objc let g:clang_format#auto_format = 1
-
-
 nn <leader>gg :YcmCompleter GoToImprecise<CR>
 nn <leader>gd :YcmCompleter GoToDefinition<CR>
 nn <leader>gD :YcmCompleter GoToDeclaration<CR>
@@ -98,10 +92,6 @@ nn <F4> :YcmCompleter GoToInclude<CR>
 
 nn <C-_> <plug>NERDCommenterToggle
 
-autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
-autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
-autocmd FileType c,cpp,objc nnoremap <buffer><C-m> :<C-u>ClangFormat<CR>
-autocmd FileType c,cpp,objc vnoremap <buffer><C-m> :ClangFormat<CR>
 
 let g:UltiSnipsExpandTrigger="<c-j>"
 
@@ -118,8 +108,14 @@ let g:ale_javascript_eslint_use_global = 1
 let g:ale_linter_aliases = {'jsx': 'css'}
 
 let g:ale_fixers = {
-      \ 'javascript': ['eslint']
+      \ 'javascript': ['eslint'],
+      \ 'cpp': ['clang-format']
       \ }
+
+autocmd FileType c,cpp,javascript,jsx nmap <Leader>cf <Plug>(ale_fix)
+
+autocmd FileType cpp,objc let g:ale_fix_on_save = 1
+
 
 " rainbow
 let g:rainbow_conf = {
