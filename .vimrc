@@ -52,6 +52,8 @@ Plugin 'tpope/vim-repeat.git'
 
 Plugin 'sheerun/vim-polyglot'
 
+Plugin 'w0rp/ale'
+
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'Valloric/YouCompleteMe'
@@ -103,6 +105,22 @@ autocmd FileType c,cpp,objc vnoremap <buffer><C-m> :ClangFormat<CR>
 
 let g:UltiSnipsExpandTrigger="<c-j>"
 
+" ale
+let g:ale_linters = {
+      \   'javascript': ['eslint', 'flow'],
+      \   'jsx': ['eslint'],
+      \   'cpp': [],
+      \   'c': [],
+      \}
+
+let g:ale_javascript_eslint_use_global = 1
+
+let g:ale_linter_aliases = {'jsx': 'css'}
+
+let g:ale_fixers = {
+      \ 'javascript': ['eslint']
+      \ }
+
 " rainbow
 let g:rainbow_conf = {
       \ 'ctermfgs': ['197', 'lightblue', 'lightyellow', 'darkcyan', 'lightmagenta']
@@ -112,6 +130,9 @@ let g:rainbow_active=1
 " cpp-highlight
 let g:cpp_class_scope_highlight = 1
 let g:cpp_class_decl_highlight = 1
+
+" javascript
+let g:javascript_plugin_flow = 1
 
 " fs-switch
 command! A :FSHere
