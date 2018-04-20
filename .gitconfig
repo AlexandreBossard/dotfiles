@@ -16,7 +16,7 @@
   cm = commit
   rb = rebase
   dif = diff
-  lo = log
+  l = log
   sdif = diff --staged
   sdiff = diff --staged
   lp = log -p
