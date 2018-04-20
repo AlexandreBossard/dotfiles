@@ -49,6 +49,9 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround.git'
 Plugin 'tpope/vim-repeat.git'
+
+Plugin 'sheerun/vim-polyglot'
+
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'Valloric/YouCompleteMe'
@@ -66,11 +69,8 @@ Plugin 'fatih/vim-go'
 
 Plugin 'flazz/vim-colorschemes'
 
-Plugin 'jelera/vim-javascript-syntax'
-Plugin 'pangloss/vim-javascript'
 Plugin 'nathanaelkane/vim-indent-guides'
 
-Plugin 'peterhoeg/vim-qml'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
