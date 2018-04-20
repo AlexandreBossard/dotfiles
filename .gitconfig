@@ -24,6 +24,7 @@
   lss = log --oneline --stat
   lsr = log --oneline --reverse
   lg = log --graph --abbrev-commit --decorate --all
+  wip = commit -m '[skip ci] wip' --allow-empty
 [push]
   default = simple
 [core]
