@@ -1,1 +1,7 @@
 color date red black
+set main-view = date:local=yes,display=relative-compact author:display=abbreviated id commit-title:graph=v2,refs=true
+color diff-index cyan black
+color diff-stat color26 black
+bind status a !?git commit --amend
+bind main R !git rebase -i %(commit)^
+bind main = !git commit --fixup=%(commit)
