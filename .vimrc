@@ -64,6 +64,9 @@ Plugin 'derekwyatt/vim-fswitch'
 Plugin 'honza/vim-snippets'
 Plugin 'qpkorr/vim-bufkill'
 
+Plugin 'rking/ag.vim'
+Plugin 'Chun-Yang/vim-action-ag'
+
 Plugin 'octol/vim-cpp-enhanced-highlight'
 
 Plugin 'fatih/vim-go'
