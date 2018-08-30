@@ -42,6 +42,7 @@ set undodir=~/.vim/tmp/undo/
 set backupdir=~/.vim/tmp/backup/
 
 set mps+=<:>
+imap jj <Esc>
 
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
