@@ -24,6 +24,7 @@ set smarttab
 set hlsearch
 set incsearch
 set cursorline
+set showcmd
 autocmd FileType qml,c,cpp,h,hpp,git,js,tex syn match Todo /\s\+$\| \+\ze\t/
 
 set shell=/bin/sh
