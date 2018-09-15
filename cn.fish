@@ -33,7 +33,7 @@ function cn
 
   set -l options
   if set -q -l _flag_options
-    set opt '--options='{$_flag_options}
+    set options '--options='{$_flag_options}
     set -e dontinstall
   end
 
