@@ -3,5 +3,5 @@ set main-view = date:local=yes,display=relative-compact author:display=abbreviat
 color diff-index cyan black
 color diff-stat color26 black
 bind status a !?git commit --amend
-bind main R !git rebase -i %(commit)^
+bind main R !git rebase --autostash -i %(commit)^
 bind main = !git commit --fixup=%(commit)
