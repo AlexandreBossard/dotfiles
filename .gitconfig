@@ -14,6 +14,7 @@
   st = status
   co = checkout
   cm = commit
+  fixup = commit --fixup
   rb = rebase
   dif = diff
   l = log
