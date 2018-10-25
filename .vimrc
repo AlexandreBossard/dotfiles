@@ -65,6 +65,9 @@ Plugin 'derekwyatt/vim-fswitch'
 Plugin 'honza/vim-snippets'
 Plugin 'qpkorr/vim-bufkill'
 
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+
 Plugin 'rking/ag.vim'
 Plugin 'Chun-Yang/vim-action-ag'
 
@@ -95,6 +98,10 @@ nn <leader>gR :YcmCompleter RefactorRename
 nn <F4> :YcmCompleter GoToInclude<CR>
 
 nn <C-_> <plug>NERDCommenterToggle
+
+" airline
+
+let g:airline_theme = 'molokai'
 
 
 let g:UltiSnipsExpandTrigger="<c-j>"
