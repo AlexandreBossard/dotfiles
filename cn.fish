@@ -24,7 +24,7 @@ function cn
   set arguments $arguments (fish_opt -s n -l dry-run)
   argparse $arguments -- $argv; or return 1
 
-  set -l dontinstall
+  set -l dontconfigure
 
   set -l profile
   if set -q -l _flag_profile
@@ -34,32 +34,35 @@ function cn
   set -l options
   if set -q -l _flag_options
     set options '--options='{$_flag_options}
-    set -e dontinstall
+    set -e dontconfigure
   end
 
   set -l deps
   if set -q -l _flag_deps
     set deps '--build='{$_flag_deps}
-    set -e dontinstall
+    set -e dontconfigure
   end
 
   set -l settings
   if set -q -l _flag_settings
     set settings '--settings='{$_flag_settings}
-    set -e dontinstall
+    set -e dontconfigure
   end
 
+  set -l install
   if set -q -l _flag_install
-    set -e dontinstall
+    set -e dontconfigure
+    set install '--install'
   end
 
   set -l configure
   if set -q -l _flag_configure
+    set -e dontconfigure
     set configure '--configure'
   end
-  set -l test
+  set -l dotest
   if set -q -l _flag_test
-    set test '--test'
+    set dotest '--test'
   end
 
   set -l build
@@ -88,15 +91,15 @@ function cn
 
   if not test -d $relbuilddir
     echo directory made
-    set -e dontinstall
+    set -e dontconfigure
     command mkdir $relbuilddir; or return 1
   end
 
-  if not set -q -l dontinstall
+  if not set -q -l dontconfigure
     command conan install $worktree $profile $settings $deps $options -if $relbuilddir; or return 1
   end
 
-  command conan build $worktree -bf $relbuilddir $build $configure $test; or return 1
+  command conan build $worktree -bf $relbuilddir $build $configure $dotest $install; or return 1
 
   return 0 
 end
