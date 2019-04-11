@@ -16,6 +16,7 @@ function cn
   set arguments $arguments (fish_opt -s p -l profile -r)
   set arguments $arguments (fish_opt -s o -l options -r --multiple-vals)
   set arguments $arguments (fish_opt -s d -l deps -r --multiple-vals)
+  set arguments $arguments (fish_opt -s u -l update)
   set arguments $arguments (fish_opt -s s -l settings -r --multiple-vals)
   set arguments $arguments (fish_opt -s i -l install)
   set arguments $arguments (fish_opt -s b -l build)
@@ -40,6 +41,12 @@ function cn
   set -l deps
   if set -q -l _flag_deps
     set deps '--build='{$_flag_deps}
+    set -e dontconfigure
+  end
+
+  set -l doupdate
+  if set -q -l _flag_update
+    set doupdate
     set -e dontconfigure
   end
 
@@ -96,7 +103,7 @@ function cn
   end
 
   if not set -q -l dontconfigure
-    command conan install $worktree $profile $settings $deps $options -if $relbuilddir; or return 1
+    command conan install $worktree $profile $settings $doupdate $deps $options -if $relbuilddir; or return 1
   end
 
   command conan build $worktree -bf $relbuilddir $build $configure $dotest $install; or return 1
