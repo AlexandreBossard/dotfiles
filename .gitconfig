@@ -16,6 +16,7 @@
   cm = commit
   fixup = commit --fixup
   rb = rebase
+  rbc = rebase --continue
   dif = diff
   l = log
   sdif = diff --staged
