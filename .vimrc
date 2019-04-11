@@ -23,13 +23,14 @@ set expandtab
 set smarttab
 set hlsearch
 set incsearch
-set cursorline
+"it slows to much on recent vim version
+set nocursorline
 set showcmd
 autocmd FileType qml,c,cpp,h,hpp,git,js,tex syn match Todo /\s\+$\| \+\ze\t/
 
 set shell=/bin/sh
 
-set wildignore+=*/node_modules/*,build(-default)?,.git/*,*/vendor/*,*/bin/*,*.o,*.so,*.a
+set wildignore+=*/node_modules/*,build,build-default/*,.git/*,*/vendor/*,*/bin/*,*.o,*.so,*.a
 
 
 set cino=g0,b1,N-s,)40
@@ -62,7 +63,7 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'luochen1990/rainbow'
 Plugin 'SirVer/ultisnips'
 Plugin 'derekwyatt/vim-fswitch'
-Plugin 'honza/vim-snippets'
+"Plugin 'honza/vim-snippets'
 Plugin 'qpkorr/vim-bufkill'
 
 Plugin 'vim-airline/vim-airline'
@@ -99,6 +100,10 @@ nn <F4> :YcmCompleter GoToInclude<CR>
 
 nn <C-_> <plug>NERDCommenterToggle
 
+" ctrlp
+
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+
 " airline
 
 let g:airline_theme = 'molokai'
@@ -112,6 +117,7 @@ let g:ale_linters = {
       \   'jsx': ['eslint'],
       \   'cpp': [],
       \   'c': [],
+      \   'python': ['black'],
       \}
 
 let g:ale_javascript_eslint_use_global = 1
@@ -120,6 +126,7 @@ let g:ale_linter_aliases = {'jsx': 'css'}
 
 let g:ale_fixers = {
       \ 'javascript': ['eslint'],
+      \ 'python': ['black'],
       \ 'cpp': ['clang-format']
       \ }
 
@@ -163,22 +170,22 @@ augroup END
 let g:fsnonewfiles = 1
 augroup my_fswitch_au_group
     au!
-    au BufEnter *.h   let b:fswitchlocs = 'reg:|include/[^/]\+|src|,reg:/include/src/,ifrel:|/include/|../src|'
-    au BufEnter *.hh  let b:fswitchlocs = 'reg:|include/[^/]\+|src|,reg:/include/src/,ifrel:|/include/|../src|'
-    au BufEnter *.hpp let b:fswitchlocs = 'reg:|include/[^/]\+|src|,reg:/include/src/,ifrel:|/include/|../src|'
-    au BufEnter *.hxx let b:fswitchlocs = 'reg:|include/[^/]\+|src|,reg:/include/src/,ifrel:|/include/|../src|'
-    au BufEnter *.H   let b:fswitchlocs = 'reg:|include/[^/]\+|src|,reg:/include/src/,ifrel:|/include/|../src|'
-    au BufEnter *.c   let b:fswitchlocs = 'reg:/src/include/,reg:|src|include/*|,ifrel:|/src/|../include|'
-    au BufEnter *.cc  let b:fswitchlocs = 'reg:/src/include/,reg:|src|include/*|,ifrel:|/src/|../include|'
-    au BufEnter *.cpp let b:fswitchlocs = 'reg:/src/include/,reg:|src|include/*|,ifrel:|/src/|../include|'
-    au BufEnter *.cxx let b:fswitchlocs = 'reg:/src/include/,reg:|src|include/*|,ifrel:|/src/|../include|'
-    au BufEnter *.C   let b:fswitchlocs = 'reg:/src/include/,reg:|src|include/*|,ifrel:|/src/|../include|'
-    au BufEnter *.m   let b:fswitchlocs = 'reg:/src/include/,reg:|src|include/*|,ifrel:|/src/|../include|'
+    au BufEnter *.h   let b:fswitchlocs = 'reg:/include/src/,reg:|include/[^/]\+|src|,reg:|include\(/[^/]\+\)\{2\}|src|'
+    au BufEnter *.hh  let b:fswitchlocs = 'reg:/include/src/,reg:|include/[^/]\+|src|,reg:|include\(/[^/]\+\)\{2\}|src|'
+    au BufEnter *.hpp let b:fswitchlocs = 'reg:/include/src/,reg:|include/[^/]\+|src|,reg:|include\(/[^/]\+\)\{2\}|src|'
+    au BufEnter *.hxx let b:fswitchlocs = 'reg:/include/src/,reg:|include/[^/]\+|src|,reg:|include\(/[^/]\+\)\{2\}|src|'
+    au BufEnter *.H   let b:fswitchlocs = 'reg:/include/src/,reg:|include/[^/]\+|src|,reg:|include\(/[^/]\+\)\{2\}|src|'
+    au BufEnter *.c   let b:fswitchlocs = 'reg:/src/include/,reg:|src|include/*|,reg:|src|include/*/*|'
+    au BufEnter *.cc  let b:fswitchlocs = 'reg:/src/include/,reg:|src|include/*|,reg:|src|include/*/*|'
+    au BufEnter *.cpp let b:fswitchlocs = 'reg:/src/include/,reg:|src|include/*|,reg:|src|include/*/*|'
+    au BufEnter *.cxx let b:fswitchlocs = 'reg:/src/include/,reg:|src|include/*|,reg:|src|include/*/*|'
+    au BufEnter *.C   let b:fswitchlocs = 'reg:/src/include/,reg:|src|include/*|,reg:|src|include/*/*|'
+    au BufEnter *.m   let b:fswitchlocs = 'reg:/src/include/,reg:|src|include/*|,reg:|src|include/*/*|'
 augroup END
 
 " go                                               
 let g:go_fmt_command="goimports"
-let g:syntastic_go_checkers=['golint','govet','errcheck']
+"let g:syntastic_go_checkers=['golint','govet','errcheck']
 let g:go_highlight_functions=1
 let g:go_highlight_methods=1
 let g:go_highlight_fields=1
@@ -187,6 +194,28 @@ let g:go_highlight_operators=1
 let g:go_highlight_build_constraints=1
 
 let &t_ut=''
+
+function! s:getSelectedText()
+  let l:old_reg = getreg('"')
+  let l:old_regtype = getregtype('"')
+  norm gvy
+  let l:ret = getreg('"')
+  call setreg('"', l:old_reg, l:old_regtype)
+  exe "norm \<Esc>"
+  return l:ret
+endfunction
+
+vnoremap <silent> * :call setreg("/",
+    \ substitute(<SID>getSelectedText(),
+    \ '\_s\+',
+    \ '\\_s\\+', 'g')
+    \ )<Cr>n
+
+vnoremap <silent> # :call setreg("?",
+    \ substitute(<SID>getSelectedText(),
+    \ '\_s\+',
+    \ '\\_s\\+', 'g')
+    \ )<Cr>n
 
 colorscheme Monokai
 
