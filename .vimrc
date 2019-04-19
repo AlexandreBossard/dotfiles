@@ -170,7 +170,7 @@ augroup END
 let g:fsnonewfiles = 1
 augroup my_fswitch_au_group
     au!
-    au BufEnter *.h   let b:fswitchlocs = 'reg:/include/src/,reg:|include/[^/]\+|src|,reg:|include\(/[^/]\+\)\{2\}|src|'
+    au BufEnter *.h   let b:fswitchlocs = 'reg:/include/src/,reg:/Headers/Sources/,reg:|include/[^/]\+|src|,reg:|include\(/[^/]\+\)\{2\}|src|'
     au BufEnter *.hh  let b:fswitchlocs = 'reg:/include/src/,reg:|include/[^/]\+|src|,reg:|include\(/[^/]\+\)\{2\}|src|'
     au BufEnter *.hpp let b:fswitchlocs = 'reg:/include/src/,reg:|include/[^/]\+|src|,reg:|include\(/[^/]\+\)\{2\}|src|'
     au BufEnter *.hxx let b:fswitchlocs = 'reg:/include/src/,reg:|include/[^/]\+|src|,reg:|include\(/[^/]\+\)\{2\}|src|'
@@ -180,7 +180,7 @@ augroup my_fswitch_au_group
     au BufEnter *.cpp let b:fswitchlocs = 'reg:/src/include/,reg:|src|include/*|,reg:|src|include/*/*|'
     au BufEnter *.cxx let b:fswitchlocs = 'reg:/src/include/,reg:|src|include/*|,reg:|src|include/*/*|'
     au BufEnter *.C   let b:fswitchlocs = 'reg:/src/include/,reg:|src|include/*|,reg:|src|include/*/*|'
-    au BufEnter *.m   let b:fswitchlocs = 'reg:/src/include/,reg:|src|include/*|,reg:|src|include/*/*|'
+    au BufEnter *.m   let b:fswitchlocs = 'reg:/Sources/Headers/'
 augroup END
 
 " go                                               
