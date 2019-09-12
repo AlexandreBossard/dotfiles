@@ -1,6 +1,9 @@
 [user]
   email = alexandre.bossard@tanker.io
   name = Alexandre Bossard
+  signingkey = DF599C202481B00F
+[commit]
+  gpgsign = true
 [color]
   branch = auto
   diff = auto
