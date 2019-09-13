@@ -34,7 +34,7 @@
   default = simple
 [core]
   editor = vim
-  excludesfile = /home/alexandre/.gitignore
+  excludesfile = ~/.gitignore
   autocrlf = input
   pager = less -F -X
 [color "diff"]
