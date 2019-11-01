@@ -46,7 +46,7 @@ function cn
 
   set -l doupdate
   if set -q -l _flag_update
-    set doupdate
+    set doupdate '--update'
     set -e dontconfigure
   end
 
