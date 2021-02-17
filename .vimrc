@@ -117,7 +117,7 @@ let g:ale_linters = {
       \   'jsx': ['eslint'],
       \   'cpp': [],
       \   'c': [],
-      \   'python': ['black'],
+      \   'python': ['black', 'flake8'],
       \}
 
 let g:ale_javascript_eslint_use_global = 1
@@ -132,7 +132,12 @@ let g:ale_fixers = {
 
 autocmd FileType c,cpp,javascript,jsx nmap <Leader>cf <Plug>(ale_fix)
 
-autocmd FileType cpp,objc let g:ale_fix_on_save = 1
+let g:ale_python_black_executable = 'poetry'
+let g:ale_python_black_options = 'run black'
+let g:ale_python_flake8_executable = 'poetry'
+let g:ale_python_flake8_options = 'run flake8'
+
+autocmd FileType cpp,objc,python let g:ale_fix_on_save = 1
 
 
 " rainbow
