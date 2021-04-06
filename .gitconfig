@@ -16,6 +16,7 @@
   st = status
   co = checkout
   cm = commit
+  sw = switch
   fixup = commit --fixup
   rb = rebase
   rbc = rebase --continue
