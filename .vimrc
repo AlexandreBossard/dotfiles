@@ -23,8 +23,7 @@ set expandtab
 set smarttab
 set hlsearch
 set incsearch
-"it slows to much on recent vim version
-set nocursorline
+set cursorline
 set showcmd
 autocmd FileType qml,c,cpp,h,hpp,git,js,tex syn match Todo /\s\+$\| \+\ze\t/
 
