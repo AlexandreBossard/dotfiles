@@ -1,5 +1,5 @@
 function _is_in_git_repository
-  if test (git rev-parse --is-inside-work-tree ^ /dev/null; or echo "false") = "true"
+  if test (git rev-parse --is-inside-work-tree 2> /dev/null; or echo "false") = "true"
     return 0
   else
     return 1
