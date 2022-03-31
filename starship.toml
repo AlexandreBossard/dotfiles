@@ -18,8 +18,8 @@ trim_at = "-"
 [directory]
 style = "purple"
 truncate_to_repo = true
-truncation_length = 0
-truncation_symbol = "repo: "
+truncation_length = 3
+truncation_symbol = ""
 
 # Fourth param
 [sudo]
@@ -37,7 +37,7 @@ style = "white"
 [cmd_duration]
 disabled = false
 format = "took [$duration]($style)"
-min_time = 1
+min_time = 20
 
 
 ## SECOND LINE/ROW: Prompt
@@ -107,6 +107,9 @@ symbol = " "
 
 [elm]
 symbol = " "
+
+[gcloud]
+disabled = true
 
 [git_branch]
 symbol = " "
