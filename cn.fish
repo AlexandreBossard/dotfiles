@@ -7,14 +7,11 @@ function _is_in_git_repository
 end
 
 function cn
-  if not _is_in_git_repository
-    echo "not in a repository"
-    return 1
-  end
 
   set -l arguments
   set arguments $arguments (fish_opt -s p -l profile -r)
   set arguments $arguments (fish_opt -s o -l options -r --multiple-vals)
+  set arguments $arguments (fish_opt -s r -l recipe_path -r --multiple-vals)
   set arguments $arguments (fish_opt -s d -l deps -r --multiple-vals)
   set arguments $arguments (fish_opt -s u -l update)
   set arguments $arguments (fish_opt -s s -l settings -r --multiple-vals)
@@ -77,29 +74,42 @@ function cn
     set build '--build'
   end
 
-  set -l buildprefix  build-
-  set -l builddir $argv[1]
+  set -l recipe_path
+  if set -q -l _flag_recipe_path
+    set recipe_path $_flag_recipe_path
+  end
 
-  if test -z $builddir
-    if set -q -l _flag_profile
-      set builddir $_flag_profile
-    else
-      set builddir default
+  set -l worktree
+  if test -z $recipe_path
+    if not _is_in_git_repository
+      echo "not in a repository"
+      return 1
+    end
+    set -l git_root (command git rev-parse --show-cdup)
+    if test -z $git_root
+      set git_root .
+    end
+    set worktree (realpath $git_root)
+  else
+    set worktree (realpath $recipe_path)
+    if test -f $worktree
+      set worktree (command dirname $worktree)
     end
   end
-  set builddir {$buildprefix}{$builddir}
 
-  set -l worktree (git rev-parse --show-cdup)
-  if test -z $worktree
-    set worktree ./
+  set -l buildsuffix default
+
+  if set -q -l _flag_profile
+    set buildsuffix $_flag_profile
   end
+  set -l builddir (string join - build {$buildsuffix})
 
-  set -l relbuilddir {$worktree}{$builddir}
+  set -l relbuilddir (string join / {$worktree} {$builddir})
 
   if not test -d $relbuilddir
-    echo directory made
     set -e dontconfigure
-    command mkdir $relbuilddir; or return 1
+    command mkdir -p $relbuilddir; or return 1
+    echo directory made
   end
 
   if not set -q -l dontconfigure
