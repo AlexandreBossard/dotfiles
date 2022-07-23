@@ -1,7 +1,7 @@
 [user]
-  email = alexandre.bossard@tanker.io
+  email = alexandre.bossard@metalgear.xyz
   name = Alexandre Bossard
-  signingkey = DF599C202481B00F
+  signingkey = 33524736364774D3
 [commit]
   gpgsign = true
 [color]
