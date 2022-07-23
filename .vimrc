@@ -68,12 +68,7 @@ Plugin 'qpkorr/vim-bufkill'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 
-Plugin 'rking/ag.vim'
-Plugin 'Chun-Yang/vim-action-ag'
-
 Plugin 'octol/vim-cpp-enhanced-highlight'
-
-Plugin 'fatih/vim-go'
 
 Plugin 'flazz/vim-colorschemes'
 
@@ -186,16 +181,6 @@ augroup my_fswitch_au_group
     au BufEnter *.C   let b:fswitchlocs = 'reg:/src/include/,reg:|src|include/*|,reg:|src|include/*/*|'
     au BufEnter *.m   let b:fswitchlocs = 'reg:/Sources/Headers/'
 augroup END
-
-" go                                               
-let g:go_fmt_command="goimports"
-"let g:syntastic_go_checkers=['golint','govet','errcheck']
-let g:go_highlight_functions=1
-let g:go_highlight_methods=1
-let g:go_highlight_fields=1
-let g:go_highlight_types=1
-let g:go_highlight_operators=1
-let g:go_highlight_build_constraints=1
 
 let &t_ut=''
 
