@@ -1,5 +1,5 @@
-syntax on
-filetype off
+" syntax on
+" filetype off
 if $TERM == "xterm-screen-256color"
     set term=xterm-256color
 endif
@@ -8,19 +8,18 @@ set statusline=%F%m%r%h%w\ [TYPE=%Y\ %{&ff}]\ [%l/%L\ %c/%v\ (%p%%)]\ %{fugitive
 autocmd FileType c,cpp :set cindent
 set number
 set nocp
-set laststatus=2
+" set laststatus=2
 set bs=2
-map <M-right> :bn<CR>
-map <M-left> :bp<CR>
-map <M-up> :buffers<CR>:buffer
+" map <M-right> :bn<CR>
+" map <M-left> :bp<CR>
+" map <M-up> :buffers<CR>:buffer
 
-"set t_Co=256	"256 Colors
+" set t_Co=256	"256 Colors
 set autowrite
-"set tags+=~/.mytags/stdtags ",~/.mytags/qttags
 set tabstop=2
 set shiftwidth=2
 set expandtab
-set smarttab
+" set smarttab
 set hlsearch
 set incsearch
 set cursorline
@@ -48,19 +47,25 @@ imap jj <Esc>
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
+Plugin 'glts/vim-magnum.git'
+Plugin 'glts/vim-radical.git'
+
+Plugin 'tpope/vim-sensible.git'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround.git'
 Plugin 'tpope/vim-repeat.git'
+Plugin 'tpope/vim-commentary.git'
+Plugin 'vim-scripts/argtextobj.vim'
 
 Plugin 'sheerun/vim-polyglot'
 
 Plugin 'w0rp/ale'
 
 Plugin 'kien/ctrlp.vim'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'Valloric/YouCompleteMe'
+"Plugin 'scrooloose/nerdcommenter'
+"Plugin 'Valloric/YouCompleteMe'
 Plugin 'luochen1990/rainbow'
-Plugin 'SirVer/ultisnips'
+"Plugin 'SirVer/ultisnips'
 Plugin 'derekwyatt/vim-fswitch'
 "Plugin 'honza/vim-snippets'
 Plugin 'qpkorr/vim-bufkill'
@@ -92,7 +97,7 @@ nn <leader>gT :YcmCompleter GetType<CR>
 nn <leader>gR :YcmCompleter RefactorRename 
 nn <F4> :YcmCompleter GoToInclude<CR>
 
-nn <C-_> <plug>NERDCommenterToggle
+"nn <C-_> <plug>NERDCommenterToggle
 
 " ctrlp
 
@@ -158,13 +163,13 @@ command! IL :FSSplitRight
 command! IJ :FSSplitBelow
 command! IH :FSSplitLeft
 
-augroup go
-  autocmd!
-  autocmd Filetype go
-        \  command! -bang A call go#alternate#Switch(<bang>0, 'edit')
-        \| command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
-        \| command! -bang AS call go#alternate#Switch(<bang>0, 'split')
-augroup END
+" augroup go
+"   autocmd!
+"   autocmd Filetype go
+"         \  command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+"         \| command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+"         \| command! -bang AS call go#alternate#Switch(<bang>0, 'split')
+" augroup END
 
 let g:fsnonewfiles = 1
 augroup my_fswitch_au_group
