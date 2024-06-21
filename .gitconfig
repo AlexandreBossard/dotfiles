@@ -36,7 +36,6 @@
   editor = vim
   excludesfile = ~/.gitignore
   autocrlf = input
- # pager = less -F -X/
   pager = delta
 [pull]
   rebase = true
@@ -46,6 +45,7 @@
   lineNumber = 1
 [rebase]
   autosquash = 1
+	updateRefs = true
 [delta]
   syntax-theme = Monokai Extended
   line-numbers = true
@@ -59,3 +59,7 @@
   file-style = bold blue
   file-decoration-style = box red ul
   hunk-header-decoration-style = normal ul
+[safe]
+	directory = /opt/flutter
+[init]
+	defaultBranch = master
